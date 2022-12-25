@@ -1,24 +1,24 @@
-async function signup(e) {
-  try {
-    e.preventDefault();
-    console.log(e.target.email.value);
+const form = document.getElementById("my-signup");
 
-    const signupDetails = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      password: e.target.password,
-    };
-    console.log(signupDetails);
-    const response = await axios.post(
-      "http://localhost:3000/user/signup",
-      signupDetails
-    );
-    if (response.status === 201) {
-      window.location.href = "../Login/login.html";
-    } else {
-      throw new Error("Failed to login");
-    }
-  } catch (err) {
-    document.body.innerHTML == `<div style="color:red:">$(err)</div>`;
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  name = e.target.name.value;
+  email = e.target.email.value;
+  password = e.target.password.value;
+
+  if (name == "" || email == "") {
+    alert("fill all the fields");
+  } else {
+    axios
+      .post("http://localhost:3000/user/signup", {
+        name: name,
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+        alert(res.data.msg);
+      });
   }
-}
+});

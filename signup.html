@@ -13,34 +13,37 @@
     <header>
         <h1>Sign up</h1>
     </header>
-    <section class="container">
-        <form id="my-signup" onsubmit="signup(event)">
+    <div class="container">
+        <form id="my-signup">
             <div>
-                <div class="form-outline flex-fill mb-0">
-                    <label for="name">Enter name:</label>
+                <div>
+                    <label for="name">Name:</label>
                     <input type="text" name="name" required />
                 </div>
                 <div>
-                    <div class="form-outline flex-fill mb-0">
-                        <label for="email">Enter email:</label>
-                        <input type="email" name="email" required />
-                    </div>
-                    <div>
-                        <label for="password">Enter password:</label>
-                        <input type="password" name="password" required />
-                    </div>
-                    <div>
-                        <input class="btn" type="submit" value="Signup">
-                    </div>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required />
+                </div>
+
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" required />
+                </div>
+                <div>
+                    <input class="btn" type="submit" value="Signup">
+                </div>
         </form>
-    </section>
-    <a href='../Login/login.html'>Existing User - Login</a>
+    </div>
+    <p class="have_account">have account<a href='./login.html'>Existing User - Login</a></p>
+
+    <script src="./signup.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
         integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="./signup.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
 </body>
 
 </html>

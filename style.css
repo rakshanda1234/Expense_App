@@ -34,21 +34,17 @@ header {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-#my-signup input[type="email"] {
+#my-signup input[type="email"],
+#my-login input[type="email"] {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-/* #my-signup input[type="phone"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-} */
-#my-signup input[type="password"] {
+
+#my-signup input[type="password"],
+#my-login input[type="password"] {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;

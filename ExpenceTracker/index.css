@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-  height: 100%;
+  height: 50%;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,36 +20,13 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  /* font-family: "Fredoka", sans-serif; */
+  font-family: "Fredoka", sans-serif;
 }
 
 .expense_form_container {
-  border: 6px solid rgba(21, 59, 228, 0.551);
-  background-color: white;
-  height: 35%;
-  width: 20%;
-  margin: 10px auto;
-  border-radius: 15px;
-  padding: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.expense_form_container .expense_from {
   border: 10px solid rgba(181, 193, 250, 0.551);
   background-color: white;
-  height: 100%;
+  height: 80%;
   width: 18%;
   margin: 10px auto;
   border-radius: 15px;
@@ -85,19 +62,19 @@ body {
   height: 30px;
   width: 100px;
 }
-
-.expense_form_container .expense_from .add_expense_btn {
-  border: none;
-  margin-top: 10px;
-  margin: 10px auto;
-  background-color: rgba(45, 39, 158, 0.804);
-  width: 30px;
+.expense_form_container .expense_from .form_items .category {
   height: 30px;
+  width: 100px;
+}
+
+.add_expense_btn {
+  background-color: rgba(13, 39, 168, 0.551);
   color: white;
-  border-radius: 100px;
   margin-left: 46%;
   margin-top: 10px;
   cursor: pointer;
+  border-radius: 6px;
+  border-color: rgba(13, 39, 168, 0.551);
 }
 
 .expense_show_container {
@@ -113,14 +90,43 @@ body {
   align-items: center;
   overflow: hidden;
 }
-
-.expense_show_container .expense {
+.expense {
   width: 70%;
   height: 450px;
   background-color: white;
   border: 6px solid rgba(39, 65, 180, 0.551);
-  -webkit-box-shadow: -20px 13px 74px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 20px 13px 14px 0px rgba(43, 42, 42, 0.442);
+  border-radius: 15px;
+}
+.expense_show_form {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+.expense_header,
+.expense_item {
+  display: flex;
+  justify-content: space-between;
+}
+p {
+  margin-right: 10px;
+  font-weight: 900;
+}
+
+.expense_item_count {
+  height: 390px;
+  overflow-y: scroll;
+}
+
+p {
+  margin-right: 10px;
+  font-weight: 400;
+}
+.expense_show_container .expense {
+  width: 70%;
+  height: 450px;
+  background-color: white;
+  border: 6px solid rgba(181, 193, 250, 0.551);
   border-radius: 15px;
 }
 

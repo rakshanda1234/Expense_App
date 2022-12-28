@@ -10,43 +10,61 @@
 </head>
 
 <body>
-    <form onsubmit="addNewExpense(event)" id="container">
+    <div class="container">
 
         <div class="expense_form_container">
-            <div class="form_items">
-                <label for="expenseamount"> ExpenseAmount:</label>
-                <input type="number" name="expenseamount" required> </input>
-            </div>
-            <div class="form_items">
-                <label for="description"> Description:</label>
-                <input type="text" name="description" required> </input>
-            </div>
-            <div class="form_items">
-                <label for="category">Category:</label>
-                <select id="category" name="category">
-                    <option value="fuel">Fuel</option>
-                    <option value="food">Food</option>
-                    <option value="electricity">Electricity</option>
-                    <option value="Movie">Movie</option>
-                </select>
-            </div>
 
-            <button>Add Expense</button>
-    </form>
+            <form class="expense_from" id="expense_from">
+                <div class="form_items">
+                    <label for="expenseamount"> ExpenseAmount:</label>
+                    <input type="number" name="expenseamount" required> </input>
+                </div>
+                <div class="form_items">
+                    <label for="description"> Description:</label>
+                    <input type="text" name="description" required> </input>
+                </div>
+                <div class="form_items">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category">
+                        <option value="select">Select</option>
+                        <option value="fuel">Fuel</option>
+                        <option value="food">Food</option>
+                        <option value="electricity">Electricity</option>
+                        <option value="Movie">Movie</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="add_expense_btn">Add Expense</button>
+            </form>
+        </div>
     </div>
-    <div id="message"></div>
 
-    <h1>
-        Expenses
-    </h1>
-    <ul id='listOfExpenses'>
+    <!-- showing expense -->
+    <!-- <ul id="listofExpenses"></ul> -->
 
-    </ul>
-    <script src='./index.js'></script>
+    <div class="expense_show_container">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
-        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <div class="expense" id="expense">
+
+            <form class="expense_show_form">
+
+                <div class="expense_header">
+                    <p>S.NO</p>
+                    <p>Amount</p>
+                    <p>Description</p>
+                    <p>Category</p>
+                    <p>Date</p>
+                    <p>Action</p>
+                </div>
+
+                <div class="expense_item_count" id="expense_item_count">
+                    <script src='./index.js'>
+                    </script>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+                        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 

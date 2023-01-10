@@ -90,3 +90,31 @@ body {
   align-items: center;
   overflow: hidden;
 }
+.expense_show_container .expense {
+  width: 70%;
+  height: 450px;
+  background-color: white;
+  border: 6px solid rgba(39, 65, 180, 0.551);
+  border-radius: 15px;
+}
+
+.expense_show_container .expense .expense_show_form {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+  display: flex;
+}
+
+.expense_show_container .expense .expense_show_form .listofExpenses {
+  height: 360px;
+  overflow-y: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.listofExpenses {
+  justify-content: space-between;
+  padding-left: 20px;
+}

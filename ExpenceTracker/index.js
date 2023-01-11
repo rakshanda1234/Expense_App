@@ -12,8 +12,6 @@ function saveToStorage(event) {
     category,
   };
   axios
-    // .post("http://localhost:3000/expense/addExpense", obj, {
-    //   headers: { Authorization: token },
     .post("http://localhost:3000/user/addExpense", obj, {
       headers: { Authorization: token },
     })
@@ -50,8 +48,6 @@ function showListofRegisteredExpenses(user) {
 window.addEventListener("DOMContentLoaded", (event) => {
   const token = localStorage.getItem("token");
   axios
-    // .get("http://localhost:3000/expense/getExpenses", {
-    //   headers: { Authorization: token },
     .get("http://localhost:3000/user/getExpenses", {
       headers: { Authorization: token },
     })
@@ -67,7 +63,7 @@ function deleteUser(userId) {
   const token = localStorage.getItem("token");
 
   axios
-    // .delete(`http://localhost:3000/expense/deleteExpense/${userId}`, {
+    // .delete(`http://localhost:3000/user/deleteExpense/${userId}`, {
     //   headers: { Authorization: token },
     .delete(`http://localhost:3000/user/deleteExpense/${userId}`, {
       headers: { Authorization: token },
@@ -92,8 +88,8 @@ function removeItemFromScreen(userId) {
   parentNode.removeChild(elem);
 }
 
-document.getElementById("rzp-button1").onclick = async function payment(event) {
-  // async function payment(e) {
+// document.getElementById("rzp-button1").onclick = async function payment(e) {
+async function payment(e) {
   const token = localStorage.getItem("token");
   const response = await axios.get(
     "http://localhost:3000/purchase/premiummembership",
@@ -105,7 +101,7 @@ document.getElementById("rzp-button1").onclick = async function payment(event) {
     key: response.data.key_id, //Enter the key ID generated from the Dashboard
 
     name: "Test Company",
-    order_id: response.data.order.id,
+    order_id: response.data.order.id, //for one time payment
     prefill: {
       name: "Test User",
       email: "test.user@example.com",
@@ -114,8 +110,8 @@ document.getElementById("rzp-button1").onclick = async function payment(event) {
     theme: {
       color: "#3399cc",
     },
-    //This handle function will handle the success payment
-    " handler": function (response) {
+    //This handler function will handle the success payment
+    handler: function (response) {
       console.log(response);
       axios
         .post(
@@ -124,24 +120,23 @@ document.getElementById("rzp-button1").onclick = async function payment(event) {
             order_id: options.order_id,
             payment_id: response.razorpay_payment_id,
           },
-          {
-            headers: { Authorization: token },
-          }
+          { headers: { Authorization: token } }
         )
         .then(() => {
           alert("You are a Premium User Now");
         })
         .catch(() => {
-          alert("Something went wrong.Try Again!!!");
+          alert("Something went wrong. Try Again!!!");
         });
     },
   };
 
   const rzp1 = new Razorpay(options);
   rzp1.open();
-  event.preventDefault();
+  e.preventDefault();
 
   rzp1.on("payment.failed", function (response) {
+    alert("Something went wrong");
     alert(response.error.code);
     alert(response.error.description);
     alert(response.error.source);
@@ -150,4 +145,4 @@ document.getElementById("rzp-button1").onclick = async function payment(event) {
     alert(response.error.metadata.order_id);
     alert(response.error.metadata.payment_id);
   });
-};
+}

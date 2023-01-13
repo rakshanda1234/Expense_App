@@ -4,9 +4,9 @@ const form = document.getElementById("my-signup");
 function signUp(e) {
   e.preventDefault();
 
-  name = e.target.name.value;
-  email = e.target.email.value;
-  password = e.target.password.value;
+  const name = e.target.name.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
 
   const obj = {
     name,
@@ -22,7 +22,8 @@ function signUp(e) {
     .then((response) => {
       console.log(response);
       if (response.status === 201) {
-        // window.location.href = "./login.html";
+        window.location.href = "./login.html";
+        // window.location.href = "./ExpenceTracker/index.html";
         console.log("sign up complete");
       } else if (response.status === 207) {
         showExistingUser(response.data.message);

@@ -10,35 +10,37 @@
 </head>
 
 <body>
-    <header>
-        <h1>Sign up</h1>
-    </header>
-    <div class="container">
-        <form id="my-signup" onsubmit="signUp(event)" method="POST">
-            <div>
+    <div class="center">
+        <header>
+            <h1>Sign up</h1>
+        </header>
+        <div class="container">
+            <form onsubmit="signUp(event)" id="my-signup" method="POST">
                 <div>
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" required />
-                </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" required />
-                </div>
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" required />
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" required />
+                    </div>
 
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" required />
-                </div>
-                <div>
-                    <input class="btn" type="submit" value="Signup">
-                </div>
-        </form>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" required />
+                    </div>
+                    <div>
+                        <input class="btn" type="submit" value="Signup">
+                    </div>
+            </form>
+        </div>
+        <p class="have_account">Already a Member</p>
+        <a href='./login.html'>Existing User - Login</a>
+
+        <div id="existing"></div>
+        <ul id="listOfUsers"></ul>
     </div>
-    <p class="have_account">Already have account</p>
-    <a href='./login.html'>Existing User - Login</a>
-
-    <div id="existing"></div>
-    <ul id="listOfUsers"></ul>
     <script src="./signup.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"

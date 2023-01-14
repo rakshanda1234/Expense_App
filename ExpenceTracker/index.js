@@ -210,7 +210,7 @@ function showLeaderboard(user, id) {
                     <p class="sno">${id + 1} </p>
                     <p class="name" id="user" onclick="openUserExpenses('${
                       user.user.id
-                    }')">${user.user.username}</p>
+                    }')">${user.user.name}</p>
                     <p class="name">${user.totalExpense}</p>
             </li>`;
 

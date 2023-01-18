@@ -26,6 +26,7 @@ body.dark {
   margin: 20px;
   width: 100px;
   background: #1877f2;
+  /* background: rgb(238, 238, 14); */
   color: white;
   border-radius: 10px;
   border: none;
@@ -51,13 +52,13 @@ div#nav {
   border: none;
 }
 
-form form_items {
+form .form_items {
   position: relative;
   border-bottom: 2px solid #adadad;
   margin: 10px 0;
 }
 
-form_items input {
+.form_items input {
   width: 100%;
   padding: 0 5px;
   height: 40px;
@@ -67,13 +68,11 @@ form_items input {
   outline: none;
 }
 
-form_items input[type="text"].dark {
+.form_items input[type="text"].dark {
   color: black;
 }
-
 .center.dark {
   margin: 25px auto 55px;
-
   border-radius: 10px;
 }
 
@@ -115,6 +114,17 @@ center form.dark {
   padding-left: 20px;
   color: black;
 }
+.del,
+.edt {
+  padding: 7px;
+  width: 120px;
+  margin: 10px 0;
+  background: #1877f2;
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+
 .button {
   background: #1877f2;
   border-radius: 10px;

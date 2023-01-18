@@ -11,6 +11,7 @@ function saveToStorage(event) {
     description,
     category,
   };
+
   axios
     .post("http://localhost:3000/user/addExpense", obj, {
       headers: { Authorization: token },
@@ -32,8 +33,8 @@ function saveToStorage(event) {
 function showListofRegisteredExpenses(user) {
   const parentNode = document.getElementById("listofExpenses");
   const createNewUserHtml = `<li id=${user.id}>${user.expenseamount} - ${user.description} - ${user.category} 
-                                            <button onclick="deleteUser('${user.id}')">Delete</button>
-                                            <button onclick="editUser('${user.id}','${user.description}','${user.expenseamount}','${user.category}')">Edit</button>
+                                            <button class="del",onclick="deleteUser('${user.id}')">Delete</button>
+                                            <button class="edt", onclick="editUser('${user.id}','${user.description}','${user.expenseamount}','${user.category}')">Edit</button>
                                            
                                          </li>
                                         `;
@@ -45,8 +46,36 @@ function showListofRegisteredExpenses(user) {
   document.getElementById("category").value = "";
 }
 
+// function showPremiumuserMessage() {
+//   document.getElementById("premium").style.visibility = "hidden";
+//   document.getElementById("message").innerHTML = "You are a premium user ";
+// }
+
+// function parseJwt(token) {
+//   var base64Url = token.split(".")[1];
+//   var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+//   var jsonPayload = decodeURIComponent(
+//     window
+//       .atob(base64)
+//       .split("")
+//       .map(function (c) {
+//         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+//       })
+//       .join("")
+//   );
+
+//   return JSON.parse(jsonPayload);
+// }
+
 window.addEventListener("DOMContentLoaded", (event) => {
   const token = localStorage.getItem("token");
+  // const decodeToken = parseJwt(token);
+  // console.log(decodeToken);
+  // const ispremiumuser = decodeToken.ispremiumuser;
+  // if (ispremiumuser) {
+  //   showPremiumuserMessage();
+  //   getPremiumLeaderboard();
+  // }
   axios
     .get("http://localhost:3000/user/getExpenses", {
       headers: { Authorization: token },
@@ -64,9 +93,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 function checkIfPremiumUser() {
   let userType = localStorage.getItem("user");
-
   if (userType == "true") {
     premiumUser();
+    // showPremiumuserMessage;
     getPremiumLeaderboard();
   }
 }
@@ -137,6 +166,8 @@ async function payment(e) {
         .then(() => {
           localStorage.setItem("user", true);
           premiumUser();
+          // showPremiumuserMessage;
+
           getPremiumLeaderboard();
           alert("You are a Premium User Now");
         })
@@ -165,7 +196,6 @@ async function payment(e) {
 function premiumUser() {
   const premium = document.getElementById("premium");
   premium.innerHTML = "Its Premium Account";
-
   document.body.classList.remove("light");
   document.body.classList.add("dark");
   document.getElementsByClassName("center")[0].classList.remove("light");
@@ -192,7 +222,8 @@ async function getPremiumLeaderboard() {
         console.log(response.data.data[0].user);
 
         response.data.data.map((user, id) => {
-          console.log(id);
+          //transform each element of an array and create a new array out of the argument which
+          console.log(id); //we are passing
           showLeaderboard(user, id);
         });
       }
@@ -203,8 +234,8 @@ async function getPremiumLeaderboard() {
 }
 
 function showLeaderboard(user, id) {
-  console.log(id);
-  console.log(user);
+  console.log(id, user);
+  // console.log(user);
   const leaderboardDiv = document.getElementById("right");
   let child = `<li class="leaderboardList">
                     <p class="sno">${id + 1} </p>
@@ -220,5 +251,6 @@ function showLeaderboard(user, id) {
 function openUserExpenses(user) {
   //yet to be completed
   //if clicked gets detailed payment of individual users
-  //which makes  a post req to the user id another route let response = await axios.post('http://localhost:5000/expense/leaderboard-user'
+  //which makes  a post req to the user id another route
+  // let response = await axios.post('http://localhost:3000/expense/leaderboard-user'
 }

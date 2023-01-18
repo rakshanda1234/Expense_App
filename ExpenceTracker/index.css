@@ -14,7 +14,7 @@ body {
 
 body.light {
   background-color: rgb(232, 229, 229);
-  /* background: linear-gradient(120deg, #2980b9, #8e44ad); */
+  /* background: linear-gradient(120deg, #2980b9, #944fb2); */
 }
 
 body.dark {
@@ -26,10 +26,23 @@ body.dark {
   margin: 20px;
   width: 100px;
   background: #1877f2;
-  /* background: rgb(238, 238, 14); */
   color: white;
-  border-radius: 10px;
+  border-radius: 30px;
   border: none;
+}
+.report {
+  background-color: #1877f2;
+  margin: 20px;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 30px;
+}
+.report:hover,
+#premium:hover {
+  background-color: rgb(14, 48, 151);
 }
 
 div#nav {

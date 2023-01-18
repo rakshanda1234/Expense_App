@@ -46,36 +46,9 @@ function showListofRegisteredExpenses(user) {
   document.getElementById("category").value = "";
 }
 
-// function showPremiumuserMessage() {
-//   document.getElementById("premium").style.visibility = "hidden";
-//   document.getElementById("message").innerHTML = "You are a premium user ";
-// }
-
-// function parseJwt(token) {
-//   var base64Url = token.split(".")[1];
-//   var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-//   var jsonPayload = decodeURIComponent(
-//     window
-//       .atob(base64)
-//       .split("")
-//       .map(function (c) {
-//         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-//       })
-//       .join("")
-//   );
-
-//   return JSON.parse(jsonPayload);
-// }
-
 window.addEventListener("DOMContentLoaded", (event) => {
   const token = localStorage.getItem("token");
-  // const decodeToken = parseJwt(token);
-  // console.log(decodeToken);
-  // const ispremiumuser = decodeToken.ispremiumuser;
-  // if (ispremiumuser) {
-  //   showPremiumuserMessage();
-  //   getPremiumLeaderboard();
-  // }
+
   axios
     .get("http://localhost:3000/user/getExpenses", {
       headers: { Authorization: token },
@@ -95,17 +68,21 @@ function checkIfPremiumUser() {
   let userType = localStorage.getItem("user");
   if (userType == "true") {
     premiumUser();
-    // showPremiumuserMessage;
+    reportDownload();
     getPremiumLeaderboard();
   }
+}
+
+function reportDownload() {
+  const down = document.getElementById("report");
+  down.innerHTML = "Report";
 }
 
 function deleteUser(userId) {
   const token = localStorage.getItem("token");
 
   axios
-    // .delete(`http://localhost:3000/user/deleteExpense/${userId}`, {
-    //   headers: { Authorization: token },
+
     .delete(`http://localhost:3000/user/deleteExpense/${userId}`, {
       headers: { Authorization: token },
     })
@@ -129,7 +106,6 @@ function removeItemFromScreen(userId) {
   parentNode.removeChild(elem);
 }
 
-// document.getElementById("rzp-button1").onclick = async function payment(e) {
 async function payment(e) {
   const token = localStorage.getItem("token");
   const response = await axios.get(
@@ -166,7 +142,6 @@ async function payment(e) {
         .then(() => {
           localStorage.setItem("user", true);
           premiumUser();
-          // showPremiumuserMessage;
 
           getPremiumLeaderboard();
           alert("You are a Premium User Now");

@@ -87,6 +87,7 @@ form .form_items {
 .center.dark {
   margin: 25px auto 55px;
   border-radius: 10px;
+  /* position: absolute; */
 }
 
 .center.light {

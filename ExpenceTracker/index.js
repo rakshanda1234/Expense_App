@@ -168,9 +168,19 @@ async function payment(e) {
   });
 }
 
+function reportGenerate(event) {
+  let usertype = localStorage.getItem("user");
+  console.log(usertype == "true");
+  if (usertype == "true") {
+    window.location.href = "../Report/reports.html";
+  }
+}
+
 function premiumUser() {
   const premium = document.getElementById("premium");
+  const reportG = document.getElementById("report");
   premium.innerHTML = "Its Premium Account";
+  reportG.innerHTML = "Reports";
   document.body.classList.remove("light");
   document.body.classList.add("dark");
   document.getElementsByClassName("center")[0].classList.remove("light");
@@ -224,6 +234,9 @@ function showLeaderboard(user, id) {
 }
 
 function openUserExpenses(user) {
+  console.log(user);
+  localStorage.setItem("clickedUser", user);
+  window.location.href = "./leaderboard.html";
   //yet to be completed
   //if clicked gets detailed payment of individual users
   //which makes  a post req to the user id another route

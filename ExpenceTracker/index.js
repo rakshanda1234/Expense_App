@@ -3,6 +3,7 @@ function saveToStorage(event) {
   const expenseamount = event.target.expenseamount.value;
   const description = event.target.description.value;
   const category = event.target.category.value;
+  const pagination = document.getElementById("pagination");
 
   const token = localStorage.getItem("token");
 
@@ -46,26 +47,52 @@ function showListofRegisteredExpenses(user) {
   document.getElementById("category").value = "";
 }
 
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("DOMContentLoaded", async (event) => {
   const token = localStorage.getItem("token");
 
-  axios
-    .get("http://localhost:3000/user/getExpenses", {
-      headers: { Authorization: token },
-    })
-    .then((response) => {
-      console.log(response.data.data[0]);
+  let page = 1;
 
-      checkIfPremiumUser();
-      for (let i = 0; i < response.data.data.length; i++) {
-        showListofRegisteredExpenses(response.data.data[i]);
-      }
-    })
-    .catch((err) => console.log(err));
+  let response = await axios.get(
+    `http://localhost:3000/user/getExpenses/${page}`,
+    // { Items_Per_Page: Items_Per_Page },
+    { headers: { Authorization: token } }
+  );
+
+  checkIfPremiumUser();
+
+  if (response.status === 200) {
+    // console.log(response.data);
+    //console.log(response.data.data[0]);
+    console.log("************");
+    console.log(response.data);
+    const listOfUsers = document.getElementById("listOfExpenses");
+
+    console.log(response.data.info);
+    // listOfUsers.innerHTML = "";
+    for (let i = 0; i < response.data.data.length; i++) {
+      showListofRegisteredExpenses(response.data.data[i]);
+      showPagination(response.data.info);
+    }
+  }
+
+  // axios
+  //   .get("http://localhost:3000/user/getExpenses", {
+  //     headers: { Authorization: token },
+  //   })
+  //   .then((response) => {
+  //     console.log(response.data.data[0]);
+
+  //     checkIfPremiumUser();
+  //     for (let i = 0; i < response.data.data.length; i++) {
+  //       showListofRegisteredExpenses(response.data.data[i]);
+  //     }
+  //   })
+  //   .catch((err) => console.log(err));
 });
 
 function checkIfPremiumUser() {
   let userType = localStorage.getItem("user");
+
   if (userType == "true") {
     premiumUser();
     reportDownload();
@@ -176,6 +203,71 @@ function reportGenerate(event) {
   }
 }
 
+function showPagination({
+  currentPage,
+  hasNextPage,
+  hasPreviousPage,
+  nextPage,
+  previousPage,
+  lastPage,
+}) {
+  let page = 1;
+  const pagination = document.getElementById("pagination");
+
+  pagination.innerHTML = "";
+
+  if (hasPreviousPage) {
+    const button1 = document.createElement("button");
+    button1.innerHTML = previousPage;
+    button1.addEventListener("click", () =>
+      getPageExpenses(page, previousPage)
+    );
+    pagination.appendChild(button1);
+  }
+
+  const button2 = document.createElement("button");
+  button2.classList.add("active");
+  button2.innerHTML = currentPage;
+  button2.addEventListener("click", () => getPageExpenses(page, currentPage));
+  pagination.appendChild(button2);
+
+  if (hasNextPage) {
+    const button3 = document.createElement("button");
+    button3.innerHTML = nextPage;
+    button3.addEventListener("click", () => getPageExpenses(page, nextPage));
+    pagination.appendChild(button3);
+  }
+
+  if (currentPage != lastPage && nextPage != lastPage && lastPage != 0) {
+    //&& lastPage != 0
+    const button3 = document.createElement("button");
+    button3.innerHTML = lastPage;
+    button3.addEventListener("click", () => getPageExpenses(page, lastPage));
+    pagination.appendChild(button3);
+  }
+}
+
+async function getPageExpenses(page) {
+  const listOfUsers = document.getElementById("listOfExpenses");
+  const token = localStorage.getItem("token");
+  let response = await axios.get(
+    `http://localhost:3000/user/getExpenses/${page}`,
+    { headers: { Authorization: token } }
+  );
+
+  if (response.status === 200) {
+    // console.log(response.data);
+    // console.log(response.data.data[0]);
+    console.log(response.data.info);
+    // listOfUsers.innerHTML = "";
+
+    for (let i = 0; i < response.data.data.length; i++) {
+      showListofRegisteredExpenses(response.data.data[i]);
+    }
+    showPagination(response.data.info);
+  }
+}
+
 function premiumUser() {
   const premium = document.getElementById("premium");
   premium.innerHTML = "Its Premium Account";
@@ -183,11 +275,15 @@ function premiumUser() {
   document.body.classList.add("dark");
   document.getElementsByClassName("center")[0].classList.remove("light");
   document.getElementsByClassName("center")[0].classList.add("dark");
+  document.getElementById("expense-div").classList.remove("light");
+  document.getElementById("expense-div").classList.add("dark");
+
   document.getElementById("left").classList.remove("light");
   document.getElementById("left").classList.add("dark");
   document.getElementsByTagName("input")[0].classList.add("dark");
   document.getElementById("right").style = "display:block";
 }
+
 async function getPremiumLeaderboard() {
   const token = localStorage.getItem("token");
   try {

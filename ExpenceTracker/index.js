@@ -178,9 +178,7 @@ function reportGenerate(event) {
 
 function premiumUser() {
   const premium = document.getElementById("premium");
-  const reportG = document.getElementById("report");
   premium.innerHTML = "Its Premium Account";
-  reportG.innerHTML = "Reports";
   document.body.classList.remove("light");
   document.body.classList.add("dark");
   document.getElementsByClassName("center")[0].classList.remove("light");

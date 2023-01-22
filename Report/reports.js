@@ -25,9 +25,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
 function showUrls(data) {
   listurl.innerHTML = "";
-  data.url.forEach((url) => {
+  data.urls.forEach((url) => {
     let child = `<li class="list">
-        <a href="${url.fileURL}" class="expense-info">${listno + 1}.${
+        <a href="${url.fileURL}" class="expense-info"> ${listno + 1}.${
       url.filename.split("/")[1]
     }</a>
         </li>`;
@@ -62,6 +62,9 @@ download.addEventListener("click", async (event) => {
 });
 
 function showUrlOnScreen(data) {
+  console.log(data);
+  console.log(data.fileURL);
+  console.log(data.fileURL);
   let child = `<li class ="list" >
     <a href ="${data.fileURL}" class="expense-info">${
     listno + 1

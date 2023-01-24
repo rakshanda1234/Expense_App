@@ -52,10 +52,15 @@
                 <h1>Expenses</h1>
             </div>
             <div style="text-align: center ; margin-top: 35px; color:black">
-
-                <div id="expense-div" class="light"></div>
-                <div id="pagination">123</div>
+                <form onsubmit="perPage(event)" id="perpage">
+                    Expenses Per Page : <input type="number" min="5" max="20" name="Items_Per_Page">
+                    <button type="submit">submit</button>
+                </form>
             </div>
+
+            <div id="expense-div" class="light"></div>
+            <div id="pagination">123</div>
+            <!-- </div> -->
             <ul id="listofExpenses"></ul>
         </div>
 

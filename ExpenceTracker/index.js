@@ -241,7 +241,7 @@ function showPagination({
     pagination.appendChild(button3);
   }
 
-  if (currentPage != lastPage && nextPage != lastPage) {
+  if (currentPage != lastPage && nextPage != lastPage && lastPage != 0) {
     const button3 = document.createElement("button");
     button3.innerHTML = lastPage;
     button3.addEventListener("click", () => getPageExpenses(page, lastPage));
@@ -253,8 +253,8 @@ async function getPageExpenses(page, limitper) {
   const listOfExpenses = document.getElementById("listofExpenses");
 
   let Items_Per_Page = limitper;
-  console.log("\\\\\\\\\\");
-  console.log(Items_Per_Page);
+  // console.log("\\\\\\\\\\");
+  // console.log(Items_Per_Page);
   const token = localStorage.getItem("token");
   let response = await axios.post(
     `http://localhost:3000/user/getExpenses/${page}`,
@@ -263,7 +263,7 @@ async function getPageExpenses(page, limitper) {
   );
 
   if (response.status === 200) {
-    console.log(response.data.info);
+    // console.log(response.data.info);
     console.log("111111111111");
     listOfExpenses.innerHTML = " ";
 
@@ -308,7 +308,7 @@ async function getPremiumLeaderboard() {
 
         response.data.data.map((user, id) => {
           //transform each element of an array and create a new array out of the argument which
-          console.log(id); //we are passing
+          // console.log(id); //we are passing
           showLeaderboard(user, id);
         });
       }
@@ -319,7 +319,7 @@ async function getPremiumLeaderboard() {
 }
 
 function showLeaderboard(user, id) {
-  console.log(id, user);
+  // console.log(id, user);
   // console.log(user);
   const leaderboardDiv = document.getElementById("right");
   let child = `<li class="leaderboardList">
